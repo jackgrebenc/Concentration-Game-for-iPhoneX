@@ -80,7 +80,6 @@ class ViewController: UIViewController {
     var newTheme = Dictionary<String, [String]>()
     func firstGame() {
         if first == true {
-            //let tempDict = pickTheme()!
             emojiChoices = ["🦇", "😱", "🙀","😈", "🎃", "👻","🍭", "🍬", "🍎"]
             buttonColor = UIColor.orange
             first = false
@@ -112,6 +111,7 @@ class ViewController: UIViewController {
         if game.cards[cardNumber].inTracker && !game.cards[cardNumber].isMatched {
                 scoreCount -= 1
         }
+        //card is matched and hasn't been scored yet
         if game.cards[cardNumber].isMatched && !game.cards[cardNumber].scored {
             scoreCount += 2
             game.cards[cardNumber].scored = true
