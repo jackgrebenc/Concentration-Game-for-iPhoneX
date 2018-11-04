@@ -8,20 +8,25 @@
 
 import Foundation
 //structs in swift are a lot like classes except 1) They have no inheritance 2) Structs are value types (gets copied when assigned to something else) , classes are refecence types
-struct Card
+struct Card : Hashable
 {
+    var hashValue: Int {return identifier}
+    
+    static func ==(lhs: Card, rhs: Card) -> Bool {
+        return lhs.identifier == rhs.identifier
+    } 
     var isFaceUp = false
     var isMatched = false
-    var identifier: Int
+    private var identifier: Int
     //inTracker and scored gets used by the score function in viewController
     var inTracker = false
     var scored = false
 
     
     
-    static var identifierFactory = 0
+    private static var identifierFactory = 0
     
-    static func getUniqueIdentifier() -> Int {
+    private static func getUniqueIdentifier() -> Int {
         identifierFactory += 1
         return identifierFactory
     }
