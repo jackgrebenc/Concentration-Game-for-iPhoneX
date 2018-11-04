@@ -41,15 +41,18 @@ class ViewController: UIViewController {
             scoreCountLabel.text = "Score: \(scoreCount)"
         }
     }
+    
     //Extra credit problem 2 -> make a timer
-    //Using the Timer class, a player gets penalized by 1 point if they don't tap a card every 3 seconds
-    //
     @IBOutlet weak var timerLabel: UILabel!
     var seconds = 3
     var timer = Timer()
-    /*restartTimer is called everytime a card is touched
-     (see touchCard method), so that the timer resets and the player isn't penalized
-     if they press a card button within the 3 second
+    
+    /*The function restartTimer is called everytime a card is touched
+     (see touchCard method), so that the timer resets and the player isn't penalized if they press a card button within the 3 second
+     
+     -> updateTimer() is the selector method used by timer. The timer gets updated every second, so this method
+     gets called every second and it counts down to 0 (penailzing the player if it every hits zero due to player inaction)
+     The selector function must have the @objc part since it is a selector method (which is defined in obj-c)
     */
     func restartTimer() {
         timer.invalidate()
@@ -57,14 +60,6 @@ class ViewController: UIViewController {
         seconds = 3
         timerLabel.text  = "Timer: \(seconds)"
     }
-    func stopTimer() {
-        timer.invalidate()
-        seconds = 3
-        timerLabel.text = "Timer: \(seconds)"
-    }
-    /* updateTimer is the selector method used by timer. The timer gets updated every second, so this method
-     gets called every second and it counts down to 0 (penailzing the player if it every hits zero due to player inaction
-    */
     @objc func updateTimer() {
         seconds -= 1
         if seconds == 0 {
@@ -73,6 +68,15 @@ class ViewController: UIViewController {
         }
         timerLabel.text = "Timer: \(seconds)"
     }
+    
+    //stopTimer is used when a new game is initialized to wait until the first card press to begin the clock
+    func stopTimer() {
+        timer.invalidate()
+        seconds = 3
+        timerLabel.text = "Timer: \(seconds)"
+    }
+
+
 
     @IBOutlet private var cardButtons: [UIButton]!
     var buttonColor =  UIColor()
@@ -183,6 +187,7 @@ class ViewController: UIViewController {
         return newTheme.randomElement()
     }
     
+    //Takes all the new/initialized theme and applies it to the elements of the UI (cards,buttons,labels)
     func applyThemesToUI(theme: Themes) {
         if let buttons = cardButtons {
             for index in cardButtons.indices {

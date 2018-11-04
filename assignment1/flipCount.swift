@@ -9,9 +9,8 @@
 import Foundation
 //Question 8
 class flipCount {
-
     var count = 0
-    
+
     func increment() {
         count += 1
     }
