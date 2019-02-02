@@ -4,6 +4,6 @@ The Rules of Concentration can be seen here: https://en.wikipedia.org/wiki/Conce
 
 # What I learned 
 -> Using Swift and the Xcode storyboard to create a functioning game  
--> Swift Optionals  
--> The use of structs, extensions and @IBOutlets/@IBActions to communicate between the view and the model (MVC Architecture)  
+-> Utilizing @IBOutlets/@IBActions to communicate between the view and the model (MVC Architecture)  
+-> The use of structs, extensions and Swift optionals  
 
